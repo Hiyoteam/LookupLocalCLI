@@ -3,14 +3,6 @@ import tqdm
 import os
 import time
 
-def safe_import(name):
-    try:
-        globals()[name]=__import__(name)
-    except ImportError:
-        print(f"Module {name} not found, installing...")
-        os.system(f"pip install {name}")
-        globals()[name]=__import__(name)
-
 def stream_download(url,file):
     with open(file,"wb+") as f:
         progress=tqdm.tqdm(unit="B",unit_scale=True,unit_divisor=1024,miniters=1,desc="Downloading",ncols=100)
